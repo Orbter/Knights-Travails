@@ -1,11 +1,3 @@
-const x = 15;
-
-console.log(x);
-function knightTravel(startPosition, finishPosition) {
-  const array = knightMove(startPosition);
-  console.log(array);
-}
-
 function knightMove(start) {
   const array = [];
   const answerArray = [];
@@ -39,9 +31,57 @@ function knightMove(start) {
 
   array.forEach((element) => {
     if (element[0] > 7 || element[0] < 0) return;
-    else if (element[1] > 7 || element[1] < 0) return;
-    else answerArray.push(element);
+    if (element[1] > 7 || element[1] < 0) return;
+    answerArray.push(element);
   });
   return answerArray;
 }
-knightTravel([7, 7], [3, 3]);
+const knightState = (moves, nextMove) => {
+  const totalMoves = [];
+  totalMoves.push(moves, nextMove);
+  const numberOfMoves = totalMoves.length;
+  const lastMove = nextMove;
+
+  return {
+    numberOfMoves,
+    totalMoves,
+    lastMove,
+  };
+};
+
+function knightTravel(startPosition, finishPosition) {
+  const unCheckedMoves = [];
+  const moves = [startPosition];
+  let allMoves = knightMove(startPosition);
+  allMoves.forEach((element) => {
+    const obj = knightState(moves, element);
+    unCheckedMoves.push(obj);
+  });
+
+  function areArrayEqual(arr1, arr2) {
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) return false;
+    }
+    return true;
+  }
+  function knightTravelRecursive(currentObj, finishMove) {
+    const currentMove = currentObj.lastMove;
+    const { totalMoves } = currentObj;
+    const answer = areArrayEqual(currentMove, finishMove);
+    if (answer) return currentObj;
+    allMoves = knightMove(currentMove);
+    allMoves.forEach((element) => {
+      const obj = knightState(totalMoves, element);
+      unCheckedMoves.push(obj);
+    });
+    const nextMove = unCheckedMoves.shift();
+    const realAnswer = knightTravelRecursive(nextMove, finishMove);
+    return realAnswer;
+  }
+  const firstMove = unCheckedMoves.shift();
+
+  const AnswerObj = knightTravelRecursive(firstMove, finishPosition);
+
+  return AnswerObj;
+}
+console.log(knightTravel([0, 0], [3, 3]));
