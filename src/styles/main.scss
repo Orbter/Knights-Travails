@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #16282f;
+}
+.headline {
+  font-family: 'Lobster', sans-serif;
+  color: #e9ecef;
+  font-size: 3rem;
+}
+.main-div {
+  border: 1px solid black;
+  display: flex;
+  width: 90vw;
+  flex-wrap: wrap; /* Wrap tiles to form rows */
+
+  height: 90vw;
+}
+.tile {
+  display: flex;
+  flex: 1 0 12.5%;
+  height: 12.5%;
+}
+.white {
+  background-color: #f8f9fa;
+}
+.black {
+  background-color: #343a40;
+}
+.button-container {
+  display: flex;
+  width: 70%;
+  height: 30vw;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Changed from space-around to space-between */
+  align-items: center; /* Ensure vertical alignment if buttons' content or size varies */
+  margin-top: 50px;
+}
+
+.main-buttons {
+  font-size: 1.3rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  flex: 1 0 45%; /* Grow to fill space, but start at 45% width */
+  max-width: 300px; /* Maximum width to prevent buttons from being too large */
+  min-width: 150px; /* Minimum width to ensure visibility */
+  margin: 15px; /* Consistent margin for all sides */
+  height: 100px; /* Fixed height to ensure identical sizes */
+  border: 2px solid black;
+  text-align: center; /* Center the text within the button */
+  padding: 10px; /* Padding for internal spacing */
+  box-sizing: border-box; /* Include padding and border in the width and height */
+  background-size: cover;
+  background-position: center;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+}
+.clicked {
+  border: 2px solid #daa520;
+  color: #daa520;
+  font-size: 1.5rem;
+  background-color: rgba(86, 88, 90, 0.282);
+}
