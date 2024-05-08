@@ -1,4 +1,5 @@
 import wood from '../photos/wood.jpg';
+import { addKnight } from './visualization';
 export { createBoard };
 
 function buttonsBackground() {
@@ -35,7 +36,22 @@ function createBoard(mainDiv) {
   for (let row = 0; row < 8; row++) {
     for (let col = 0; col < 8; col++) {
       const div = document.createElement('div');
+      div.addEventListener('click', () => {
+        const placeButton = document.getElementById('place-button');
+        const selectButton = document.getElementById('select-button');
+        const startButton = document.getElementById('start-button');
+        const clearButton = document.getElementById('clear-button');
 
+        if (placeButton.classList.contains('clicked')) {
+          addKnight(div);
+        }
+        //if (selectButton.classList.contains('clicked')) {
+        //}
+        //if (startButton.classList.contains('clicked')) {
+        //}
+        //if (clearButton.classList.contains('clicked')) {
+        //}
+      });
       if (color) {
         div.classList.add('white');
       } else {
