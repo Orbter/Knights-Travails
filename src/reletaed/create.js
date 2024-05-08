@@ -1,5 +1,5 @@
 import wood from '../photos/wood.jpg';
-import { addKnight } from './visualization';
+import { addKnight, placeEnd } from './visualization';
 export { createBoard };
 
 function buttonsBackground() {
@@ -9,7 +9,6 @@ function buttonsBackground() {
   buttons.forEach((button) => {
     button.style.backgroundImage = `url(${wood})`;
     button.addEventListener('click', function () {
-      // Check if there's a previously clicked button and reset its background
       if (lastClicked && lastClicked !== this) {
         lastClicked.style.backgroundImage = `url(${wood})`;
       }
@@ -45,12 +44,14 @@ function createBoard(mainDiv) {
         if (placeButton.classList.contains('clicked')) {
           addKnight(div);
         }
-        //if (selectButton.classList.contains('clicked')) {
-        //}
+        if (selectButton.classList.contains('clicked')) {
+          placeEnd(div);
+        }
         //if (startButton.classList.contains('clicked')) {
         //}
-        //if (clearButton.classList.contains('clicked')) {
-        //}
+        if (clearButton.classList.contains('clicked')) {
+          clearBoard();
+        }
       });
       if (color) {
         div.classList.add('white');

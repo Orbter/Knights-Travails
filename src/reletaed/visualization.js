@@ -1,11 +1,13 @@
 import knight from '../photos/chess.svg';
+import wood from '../photos/wood.jpg';
 
 function addKnight(div) {
   const tile = document.querySelectorAll('.tile');
   tile.forEach((container) => {
-    if (container.hasChildNodes()) {
+    if (container.classList.contains('knight-placed')) {
       const child = container.firstChild;
       container.removeChild(child);
+      container.classList.remove('knight-placed');
     }
   });
 
@@ -22,4 +24,40 @@ function addKnight(div) {
   const mainButton = document.querySelector('.clicked');
   mainButton.classList.remove('clicked');
 }
-export { addKnight };
+
+function placeEnd(div) {
+  const tile = document.querySelectorAll('.tile');
+  tile.forEach((container) => {
+    if (container.classList.contains('end-tile')) {
+      container.classList.remove('end-tile');
+    }
+  });
+  if (div.classList.contains('knight-placed')) {
+    const child = div.firstChild;
+    div.removeChild(child);
+    div.classList.remove('knight-placed');
+  }
+  div.classList.add('end-tile');
+  const mainButton = document.querySelector('.clicked');
+  mainButton.classList.remove('clicked');
+}
+
+function clearBoard() {
+  const tile = document.querySelectorAll('.tile');
+  tile.forEach((container) => {
+    if (container.classList.contains('end-tile')) {
+      container.classList.remove('end-tile');
+    }
+    if (container.classList.contains('knight-placed')) {
+      const child = container.firstChild;
+      container.removeChild(child);
+      container.classList.remove('knight-placed');
+    }
+  });
+  const mainButton = document.querySelector('.clicked');
+  mainButton.classList.remove('clicked');
+  mainButton.style.fontSize = '1.3rem';
+  mainButton.style.backgroundImage = `url(${wood})`;
+}
+
+export { addKnight, placeEnd, clearBoard };
