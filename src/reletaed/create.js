@@ -31,26 +31,18 @@ function buttonsBackground() {
 
 function createBoard(mainDiv) {
   let color = true;
-  let counter = 0;
-  for (let row = 0; row < 8; row++) {
+  for (let row = 7; row > -1; row--) {
     for (let col = 0; col < 8; col++) {
       const div = document.createElement('div');
       div.addEventListener('click', () => {
         const placeButton = document.getElementById('place-button');
         const selectButton = document.getElementById('select-button');
-        const startButton = document.getElementById('start-button');
-        const clearButton = document.getElementById('clear-button');
 
         if (placeButton.classList.contains('clicked')) {
           addKnight(div);
         }
         if (selectButton.classList.contains('clicked')) {
           placeEnd(div);
-        }
-        //if (startButton.classList.contains('clicked')) {
-        //}
-        if (clearButton.classList.contains('clicked')) {
-          clearBoard();
         }
       });
       if (color) {
@@ -59,9 +51,10 @@ function createBoard(mainDiv) {
         div.classList.add('black');
       }
       div.classList.add('tile');
-      div.id = counter;
+      div.id = `${row} , ${col}`;
+      div.dataset.rowNum = row;
+      div.dataset.colNum = col;
       mainDiv.append(div);
-      counter++;
       color = !color;
     }
     color = !color;

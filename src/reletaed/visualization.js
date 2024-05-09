@@ -1,5 +1,6 @@
 import knight from '../photos/chess.svg';
 import wood from '../photos/wood.jpg';
+import { knightTravel } from './knight';
 
 function addKnight(div) {
   const tile = document.querySelectorAll('.tile');
@@ -60,4 +61,29 @@ function clearBoard() {
   mainButton.style.backgroundImage = `url(${wood})`;
 }
 
-export { addKnight, placeEnd, clearBoard };
+function startMove() {
+  let startDiv = null;
+  let endDiv = null;
+  const tile = document.querySelectorAll('.tile');
+  tile.forEach((container) => {
+    if (container.classList.contains('end-tile')) endDiv = container;
+    if (container.classList.contains('knight-placed')) startDiv = container;
+  });
+  if (startDiv && endDiv) {
+    const startRow = startDiv.dataset.rowNum;
+    const starCol = startDiv.dataset.colNum;
+    const endRow = endDiv.dataset.rowNum;
+    const endCol = endDiv.dataset.colNum;
+
+    const startArray = [];
+    const endArray = [];
+    // need to convert them from string to num
+    startArray.push(startRow, starCol);
+    endArray.push(endRow, endCol);
+
+    const answerArray = knightTravel(startArray, endArray);
+    console.log(answerArray);
+  } else return;
+}
+
+export { addKnight, placeEnd, clearBoard, startMove };
