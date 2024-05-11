@@ -116,10 +116,10 @@ function calculateMidTile(currentTile, nextTile) {
   answer.push(midX, midY);
   return answer;
 }
-
-function animateKnight(startX, startY, endX, endY) {
+async function animateKnight(startX, startY, endX, endY) {
   return new Promise((resolve, reject) => {
-    const keyframe = `@keyframes Move-${Date.now()} {
+    const animationName = `Move-${Date.now()}`;
+    const keyframe = `@keyframes ${animationName} {
         from {
           left: ${startX}px;
           top: ${startY}px;
@@ -133,7 +133,7 @@ function animateKnight(startX, startY, endX, endY) {
     const knightPiece = document.querySelector('.knight');
     const styleSheet = document.styleSheets[0];
     styleSheet.insertRule(keyframe, styleSheet.cssRules.length);
-    const animationName = `Move-${Date.now()}`;
+
     knightPiece.style.animation = `${animationName} 0.7s ease-in-out forwards`;
 
     knightPiece.addEventListener(

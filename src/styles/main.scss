@@ -7,6 +7,11 @@ body {
   align-items: center;
   background-color: #16282f;
 }
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .headline {
   font-family: 'Lobster', sans-serif;
   color: #e9ecef;
@@ -87,4 +92,37 @@ body {
 .end-move {
   color: #daa520;
   background-color: rgb(199, 0, 57);
+}
+@media (min-width: 500px) and (max-width: 1023px) {
+  .main-div {
+    width: 70vw;
+    height: 70vw;
+  }
+  .main-buttons {
+    flex: 1 0 15%;
+    max-width: 100000px;
+    min-width: 250px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-page {
+    display: flex;
+    flex-direction: row;
+  }
+  .main-div {
+    width: 60vw;
+    height: 60vw;
+    margin: 15px;
+    max-width: 80vh;
+    max-height: 80vh;
+  }
+  .button-container {
+    width: 35vw;
+    height: 70vh;
+  }
+  .main-buttons {
+    flex: 1 0 15%;
+    max-width: 100000px;
+    min-width: 250px;
+  }
 }
