@@ -153,6 +153,16 @@ function calculateWay(startDiv, endDiv) {
   const answerArray = knightTravel(startArray, endArray);
   return answerArray.totalMoves;
 }
+function addCount(div, count, endDiv) {
+  div.style.backgroundColor = 'rgb(108, 117, 125)';
+  const H1 = document.createElement('h1');
+  H1.textContent = count;
+  if (div === endDiv) {
+    H1.style.color = '#daa520';
+    div.style.backgroundColor = 'rgb(199, 0, 57)';
+  }
+  div.appendChild(H1);
+}
 async function startMove() {
   const [startDiv, endDiv] = getTiles();
   if (startDiv && endDiv) {
@@ -166,6 +176,7 @@ async function startMove() {
         `${answerArray[index + 1][0]},${answerArray[index + 1][1]}`
       );
       await moveKnight(currentTile, nextTile); // Wait for each move to complete before the next
+      addCount(nextTile, index + 1, endDiv);
     }
   } else {
     return;
