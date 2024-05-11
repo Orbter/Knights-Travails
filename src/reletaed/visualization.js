@@ -30,29 +30,41 @@ function addKnight(div) {
   svg.style.height = divHeight * 0.9 + 'px';
   svg.style.zIndex = '10';
   div.appendChild(svg);
-  const mainButton = document.querySelector('.clicked');
-  mainButton.classList.remove('clicked');
-  mainButton.style.backgroundImage = `url(${wood})`;
-  mainButton.style.fontSize = '1.3rem';
+  if (!check) {
+    const mainButton = document.querySelector('.clicked');
+    mainButton.classList.remove('clicked');
+    mainButton.style.backgroundImage = `url(${wood})`;
+    mainButton.style.fontSize = '1.3rem';
+  }
 }
 
 function placeEnd(div) {
+  let check = false;
+
   const tile = document.querySelectorAll('.tile');
   tile.forEach((container) => {
     if (container.classList.contains('end-tile')) {
       container.classList.remove('end-tile');
     }
+    if (container.classList.contains('finished')) {
+      check = true;
+    }
   });
+  if (check) {
+    clearBoard();
+  }
   if (div.classList.contains('knight-placed')) {
     const child = div.firstChild;
     div.removeChild(child);
     div.classList.remove('knight-placed');
   }
   div.classList.add('end-tile');
-  const mainButton = document.querySelector('.clicked');
-  mainButton.classList.remove('clicked');
-  mainButton.style.backgroundImage = `url(${wood})`;
-  mainButton.style.fontSize = '1.3rem';
+  if (!check) {
+    const mainButton = document.querySelector('.clicked');
+    mainButton.classList.remove('clicked');
+    mainButton.style.backgroundImage = `url(${wood})`;
+    mainButton.style.fontSize = '1.3rem';
+  }
 }
 
 function clearBoard() {
@@ -75,6 +87,9 @@ function clearBoard() {
       const child = container.firstChild;
       container.removeChild(child);
       container.classList.remove('move');
+    }
+    if (container.classList.contains('finished')) {
+      container.classList.remove('finished');
     }
   });
   const mainButton = document.querySelector('.clicked');
