@@ -17,6 +17,7 @@ body {
   display: flex;
   width: 90vw;
   flex-wrap: wrap; /* Wrap tiles to form rows */
+  position: relative;
 
   height: 90vw;
 }
@@ -24,6 +25,7 @@ body {
   display: flex;
   flex: 1 0 12.5%;
   height: 12.5%;
+  float: left;
 }
 .white {
   background-color: #f8f9fa;
@@ -70,4 +72,8 @@ body {
 }
 .end-tile {
   background-color: rgb(199, 0, 57);
+}
+.knight {
+  transition: transform 1s ease-in-out;
+  position: absolute;
 }

@@ -51,9 +51,9 @@ function createBoard(mainDiv) {
         div.classList.add('black');
       }
       div.classList.add('tile');
-      div.id = `${row} , ${col}`;
-      div.dataset.rowNum = row;
-      div.dataset.colNum = col;
+      div.id = `${col},${row}`;
+      div.dataset.rowNum = col;
+      div.dataset.colNum = row;
       mainDiv.append(div);
       color = !color;
     }
