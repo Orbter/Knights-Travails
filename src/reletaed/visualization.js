@@ -3,15 +3,22 @@ import wood from '../photos/wood.jpg';
 import { knightTravel } from './knight';
 
 function addKnight(div) {
+  let check = false;
   const tile = document.querySelectorAll('.tile');
   tile.forEach((container) => {
+    if (container.classList.contains('finished')) {
+      check = true;
+    }
+
     if (container.classList.contains('knight-placed')) {
       const child = container.firstChild;
       container.removeChild(child);
       container.classList.remove('knight-placed');
     }
   });
-
+  if (check) {
+    clearBoard();
+  }
   const divWidth = div.clientWidth;
   const divHeight = div.clientHeight;
   div.classList.add('knight-placed');
@@ -25,6 +32,8 @@ function addKnight(div) {
   div.appendChild(svg);
   const mainButton = document.querySelector('.clicked');
   mainButton.classList.remove('clicked');
+  mainButton.style.backgroundImage = `url(${wood})`;
+  mainButton.style.fontSize = '1.3rem';
 }
 
 function placeEnd(div) {
@@ -42,6 +51,8 @@ function placeEnd(div) {
   div.classList.add('end-tile');
   const mainButton = document.querySelector('.clicked');
   mainButton.classList.remove('clicked');
+  mainButton.style.backgroundImage = `url(${wood})`;
+  mainButton.style.fontSize = '1.3rem';
 }
 
 function clearBoard() {
@@ -54,6 +65,16 @@ function clearBoard() {
       const child = container.firstChild;
       container.removeChild(child);
       container.classList.remove('knight-placed');
+    }
+    if (container.classList.contains('end-move')) {
+      const child = container.firstChild;
+      container.removeChild(child);
+      container.classList.remove('end-move');
+    }
+    if (container.classList.contains('move')) {
+      const child = container.firstChild;
+      container.removeChild(child);
+      container.classList.remove('move');
     }
   });
   const mainButton = document.querySelector('.clicked');
@@ -154,12 +175,12 @@ function calculateWay(startDiv, endDiv) {
   return answerArray.totalMoves;
 }
 function addCount(div, count, endDiv) {
-  div.style.backgroundColor = 'rgb(108, 117, 125)';
   const H1 = document.createElement('h1');
   H1.textContent = count;
   if (div === endDiv) {
-    H1.style.color = '#daa520';
-    div.style.backgroundColor = 'rgb(199, 0, 57)';
+    div.classList.add('end-move');
+  } else {
+    div.classList.add('move');
   }
   div.appendChild(H1);
 }
@@ -178,6 +199,7 @@ async function startMove() {
       await moveKnight(currentTile, nextTile); // Wait for each move to complete before the next
       addCount(nextTile, index + 1, endDiv);
     }
+    endDiv.classList.add('finished');
   } else {
     return;
   }

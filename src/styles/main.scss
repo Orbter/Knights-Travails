@@ -73,7 +73,6 @@ body {
   border: 2px solid #daa520;
   color: #daa520;
   font-size: 1.5rem;
-  background-color: rgba(86, 88, 90, 0.282);
 }
 .end-tile {
   background-color: rgb(199, 0, 57);
@@ -81,4 +80,11 @@ body {
 .knight {
   transition: transform 1s ease-in-out;
   position: absolute;
+}
+.move {
+  background-color: rgb(108, 117, 125);
+}
+.end-move {
+  color: #daa520;
+  background-color: rgb(199, 0, 57);
 }
