@@ -117,12 +117,16 @@ body {
     max-height: 80vh;
   }
   .button-container {
+    display: flex;
+    flex-direction: column;
     width: 35vw;
     height: 70vh;
   }
+
   .main-buttons {
-    flex: 1 0 15%;
-    max-width: 100000px;
-    min-width: 250px;
+    flex: 1 0 auto; /* Grow to fill available space, no specific basis */
+    min-width: 30vw; /* Minimum width */
+    width: 100%; /* Take full width of the container */
+    max-height: 250px; /* Example if you want to limit the height */
   }
 }
