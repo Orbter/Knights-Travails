@@ -3,7 +3,7 @@
 ## Overview
 Knight Travails is a project that showcases the ability of a knight chess piece to find the shortest path to a designated point on the chessboard using a visual interface. The project demonstrates the implementation of a breadth-first search algorithm to determine the optimal path for the knight.
 
-[![Project Demo](https://orbter.github.io/Knights-Travails/blob/main/photos/knightProject.png)](https://orbter.github.io/Knights-Travails/)
+[![Project Demo](https://github.com/Orbter/Knights-Travails/assets/94376239/75dc5fe0-3c3a-4840-ae3a-a7bdde0dc2bf)](https://orbter.github.io/Knights-Travails/)
 
 Click the image above to try out the live demo!
 
